@@ -1,0 +1,39 @@
+{
+  "roles": {
+    "Administrator": {
+      "capabilities": [
+        "ShowAdmin",
+        "AddURL",
+        "DeleteURL",
+        "EditURL",
+        "ShareURL",
+        "API",
+        "APIu",
+        "ViewStats",
+        "ViewAll",
+        "ViewURLs",
+        "ManageTools",
+        "ManageUsers",
+        "ManageRoles",
+        "ManagePlugins",
+        "ChangePassword"
+      ]
+    },
+    "Editor": {
+      "capabilities": [
+        "ShowAdmin",
+        "AddURL",
+        "EditURL",
+        "ShareURL",
+        "ViewStats",
+        "ViewURLs"
+      ]
+    },
+    "Contributor": {
+      "capabilities": [
+        "ShareURL",
+        "ViewURLs"
+      ]
+    }
+  }
+}

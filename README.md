@@ -1,13 +1,5 @@
 # YOURLS Advanced User Management
 
-**Plugin URI:** 
-**Description:** A powerful plugin for YOURLS to manage users, roles, capabilities, and password changes with advanced control and security features.
-**Version:** 0.0.1
-**Author:** Fallahi Dev
-**Author URI:** https://fallahi.dev
-
-## Description
-
 The YOURLS Advanced User Management plugin provides comprehensive user, role, and capability management for YOURLS. This plugin enhances the default YOURLS installation with advanced control and security features.
 
 ## Features
@@ -49,26 +41,87 @@ The YOURLS Advanced User Management plugin provides comprehensive user, role, an
 
 ## Usage
 
-1. Navigate to the YOURLS Admin interface.
-2. Use the provided pages to manage users, roles, and capabilities.
-3. Assign links to users and manage access through the defined capabilities.
+### User Management
 
-## Files and Directories
+- **Accessing the User Management Page:**
+  - Navigate to the YOURLS Admin interface.
+  - Click on "User Management" in the plugin menu.
+  - On this page, you can add new users, update existing users, and delete users.
 
-### Includes
-- `class-database-manager.php`: Manages database interactions and schema creation.
-- `class-roles-capabilities.php`: Defines and manages roles and capabilities.
-- `class-user-management.php`: Handles user management operations.
-- `class-role-management.php`: Manages role-related operations.
-- `functions.php`: Contains helper functions and initialization routines.
+- **Adding a User:**
+  - Enter a username, password, and select a role.
+  - Click "Add User" to create the new user.
 
-### Templates
-- `user-management-template.php`: Template for the user management page.
-- `role-management-template.php`: Template for the role management page.
-- `change-password-template.php`: Template for the password change page.
+- **Updating a User:**
+  - Click the "Edit" button next to the user you want to update.
+  - Modify the username, password, or role as needed.
+  - Click "Update User" to save changes.
 
-### Assets
-- `assets/`: Directory for storing plugin assets such as CSS and JavaScript files.
+- **Deleting a User:**
+  - Click the "Delete" button next to the user you want to delete.
+  - Confirm the deletion. You will need to transfer the user's links to another user.
+
+### Role Management
+
+- **Accessing the Role Management Page:**
+  - Navigate to the YOURLS Admin interface.
+  - Click on "Role Management" in the plugin menu.
+  - On this page, you can manage roles and their associated capabilities.
+
+- **Modifying Roles:**
+  - Add new roles by defining their capabilities.
+  - Update existing roles by adding or removing capabilities.
+  - Roles define what actions users assigned to them can perform.
+
+### Capability Management
+
+- **Managing Capabilities:**
+  - Capabilities define specific actions that users can perform (e.g., adding URLs, managing plugins).
+  - Assign capabilities to roles through the Role Management page.
+
+### Password Change
+
+- **Accessing the Password Change Page:**
+  - Navigate to the YOURLS Admin interface.
+  - Click on "Change Password" in the plugin menu.
+  - On this page, users can update their password.
+
+- **Changing Password:**
+  - Enter the current password, new password, and confirm the new password.
+  - Click "Change Password" to update.
+
+### Initial Configuration
+
+- **Role-Capabilities Configuration:**
+  - The initial roles and capabilities are configured through a JSON file located at `includes/role-capabilities-config.json`.
+  - Modify this file to change the default roles and their capabilities.
+  - Example configuration:
+    ```json
+    {
+        "roles": {
+            "Administrator": {
+                "capabilities": ["ShowAdmin", "AddURL", "DeleteURL", "EditURL", "ManageUsers", "ManageRoles", "ManagePlugins"]
+            },
+            "Editor": {
+                "capabilities": ["ShowAdmin", "AddURL", "EditURL", "ViewStats"]
+            },
+            "Contributor": {
+                "capabilities": ["ShowAdmin", "AddURL"]
+            }
+        }
+    }
+    ```
+  - After modifying the configuration file, reinitialize the roles and capabilities by calling the `RolesCapabilities::reset_roles_and_capabilities()` method.
+
+### Access Control
+
+- **Admin Interface Access:**
+  - Access to the admin interface is controlled by the `ShowAdmin` capability.
+  - Only users with this capability can access the admin pages.
+
+- **Managing Plugins:**
+  - The `ManagePlugins` capability controls access to the plugin management page.
+  - Users without this capability will not see the plugin management links.
 
 ## Contributing
 
